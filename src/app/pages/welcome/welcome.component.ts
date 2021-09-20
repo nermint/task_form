@@ -21,7 +21,7 @@ export class WelcomeComponent implements OnInit {
   }
 
   navigateAbout(){
-    this.router.navigate(['/about-you']);
+    this.router.navigate(['/about-me']);
   }
 
 }
