@@ -1,0 +1,53 @@
+<div class="container d-flex h-100">
+    <div class="row justify-content-center align-self-center">
+        <h3>Calculate how much insurance you may need to help protect you and the people who matter in your life.</h3>
+        <p>
+            Financial Seurat for you and your family is Something you may be abe to prepare of. our life insurance news
+            adult can hel you determine
+            he level of over that may be right for of,by uSing Some of your financial details to help yoU Work out how
+            much Death, Total and Permanent
+            Disablement (IPD), Trauma and Income Protection (IP) cover you may need
+            We can provide you with an estimate in approximately minutes.</p>
+        <div class="d-flex justify-content-start">
+            <button class="btn btn-primary get-started" (click)="openModal()">Get started</button>
+        </div>
+    </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title text-left">Disclaimer</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    permanent or temporary) or the occurrence of a specified medical condition. It is a guide only. This
+                    estimate
+                    should not be considered a comprehensive statement or recommendation. You wWill need to separately
+                    consider your need for other insurances, including private health insurance. This information does
+                    not take
+                    into account your personal objectives, financial situation or needs and so you should consider its
+                    appropriateness, having regard to these factors before acting on it. This calculator is not intended
+                    to be use
+                    by a dependent spouse.
+                    any
+                    guidance about the implications of holding insurance cover inside versus outside of superannuation.
+                    In
+                    providing the estimates for the different amounts of cover you may consider, this calculator does
+                    not take
+                    into account whether the amount of cover you might have under one type of cover might mean you
+                    require
+                    ess cover in another type of cover to meet
+                </p>
+
+            </div>
+            <div class="modal-footer text-left">
+                <button class="btn btn-outline-primary" (click)="navigateAbout()">Continue</button>
+                <button class="btn btn-outline-secondary" (click)="closeModal()">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
