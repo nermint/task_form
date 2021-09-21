@@ -7,6 +7,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SeparatedDirective } from 'src/app/shared/directives/separated.directive';
+
 
 const routes: Routes = [
   { path: '', component: AboutYouComponent }
@@ -14,7 +16,7 @@ const routes: Routes = [
 
 
 @NgModule({
-  declarations: [AboutYouComponent],
+  declarations: [AboutYouComponent, SeparatedDirective],
   imports: [
     CommonModule,
     MatFormFieldModule,

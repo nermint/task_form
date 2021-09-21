@@ -7,25 +7,21 @@
           <ng-container *ngIf="!hasPartner; else hasPartnerName">
             <h3 class="mb-5 mt-5">About you</h3>
             <mat-form-field appearance="fill">
-                <mat-label>Your first name</mat-label>
-                <input matInput autocomplete="off" formControlName="firstname" />
-              </mat-form-field>
+              <mat-label>Your first name</mat-label>
+              <input matInput autocomplete="off" formControlName="firstname" />
+            </mat-form-field>
           </ng-container>
           <ng-template #hasPartnerName>
             <div formGroupName="partner">
-                <h3 class="mb-5 mt-5">About partner</h3>
-                <mat-form-field appearance="fill">
+              <h3 class="mb-5 mt-5">About partner</h3>
+              <mat-form-field appearance="fill">
                 <mat-label>Partner's first name</mat-label>
                 <input matInput autocomplete="off" formControlName="firstname" />
-                </mat-form-field>
-              </div>
+              </mat-form-field>
+            </div>
           </ng-template>
           <div>
-            <button
-              mat-button
-              (click)="nextStep(2, 'firstname')"
-              class="btn btn-primary"
-            >
+            <button mat-button (click)="nextStep(2, 'firstname')" class="btn btn-primary">
               Next
             </button>
           </div>
@@ -36,156 +32,93 @@
           </h3>
           <div>
             <ng-container *ngIf="!hasPartner; else hasPartnerAge">
-                <mat-form-field appearance="fill">
-                    <mat-label>Your age</mat-label>
-                    <input
-                      matInput
-                      autocomplete="off"
-                      type="number"
-                      min="0"
-                      formControlName="age"
-                    />
-                  </mat-form-field>
+              <mat-form-field appearance="fill">
+                <mat-label>Your age</mat-label>
+                <input matInput autocomplete="off" type="number" min="0" formControlName="age" />
+              </mat-form-field>
             </ng-container>
             <ng-template #hasPartnerAge>
-                <div formGroupName="partner">
-                    <mat-form-field appearance="fill">
-                        <mat-label>Partner's age</mat-label>
-                        <input
-                          matInput
-                          autocomplete="off"
-                          type="number"
-                          min="0"
-                          formControlName="age"
-                        />
-                      </mat-form-field>
-                </div>
+              <div formGroupName="partner">
+                <mat-form-field appearance="fill">
+                  <mat-label>Partner's age</mat-label>
+                  <input matInput autocomplete="off" type="number" min="0" formControlName="age" />
+                </mat-form-field>
+              </div>
             </ng-template>
-            
+
           </div>
           <div>
-            <button
-              mat-button
-              (click)="nextStep(1, null, 'back')"
-              class="btn btn-outline-primary"
-            >
+            <button mat-button (click)="nextStep(1, null, 'back')" class="btn btn-outline-primary">
               Back
             </button>
-            <button
-              mat-button
-              (click)="nextStep(3,'age')"
-              class="btn btn-primary mx-3"
-            >
+            <button mat-button (click)="nextStep(3,'age')" class="btn btn-primary mx-3">
               Next
             </button>
           </div>
         </div>
         <div *ngSwitchCase="3">
-            <h3 class="mb-5 mt-5">
-              Hi {{ firstname }}, tell us a little about yourself
-            </h3>
-            <ng-container *ngIf="!hasPartner; else hasPartnerSalary">
-                <div>
-                    <mat-form-field appearance="fill">
-                      <mat-label>Your age</mat-label>
-                      <input
-                        matInput
-                        autocomplete="off"
-                        type="number"
-                        min="0"
-                        formControlName="age"
-                      />
-                    </mat-form-field>
-                  </div>
-                  <div>
-                    <mat-form-field appearance="fill">
-                      <mat-label>Your annual salary</mat-label>
-                      <span matPrefix>$ &nbsp;</span>
-                      <input
-                        matInput
-                        autocomplete="off"
-                        type="number"
-                        min="0"
-                        placeholder="About you"
-                        formControlName="salary"
-                      />
-                    </mat-form-field>
-                  </div>
-            </ng-container>
-            <ng-template #hasPartnerSalary>
-               <div formGroupName="partner">
-                <div>
-                    <mat-form-field appearance="fill">
-                      <mat-label>Your age</mat-label>
-                      <input
-                        matInput
-                        autocomplete="off"
-                        type="number"
-                        min="0"
-                        formControlName="age"
-                      />
-                    </mat-form-field>
-                  </div>
-                  <div>
-                    <mat-form-field appearance="fill">
-                      <mat-label>Partner's annual salary</mat-label>
-                      <span matPrefix>$ &nbsp;</span>
-                      <input
-                        matInput
-                        autocomplete="off"
-                        type="number"
-                        min="0"
-                        placeholder="About you"
-                        formControlName="salary"
-                      />
-                    </mat-form-field>
-                  </div>
-               </div>
-            </ng-template>
-            
+          <h3 class="mb-5 mt-5">
+            Hi {{ firstname }}, tell us a little about yourself
+          </h3>
+          <ng-container *ngIf="!hasPartner; else hasPartnerSalary">
             <div>
-              <button
-                mat-button
-                (click)="nextStep(2, null, 'back')"
-                class="btn btn-outline-secondary"
-              >
-                Back
-              </button>
-              <button
-                mat-button
-                (click)="nextStep(4,'salary')"
-                class="btn btn-primary mx-3"
-              >
-                Next
-              </button>
+              <mat-form-field appearance="fill">
+                <mat-label>Your age</mat-label>
+                <input matInput autocomplete="off" type="number" min="0" formControlName="age" />
+              </mat-form-field>
             </div>
+            <div>
+              <mat-form-field appearance="fill">
+                <mat-label>Your annual salary</mat-label>
+                <span matPrefix>$ &nbsp;</span>
+                <input matInput autocomplete="off" type="text" min="0"  
+                  formControlName="salary" appSeparated/>
+              </mat-form-field>
+            </div>
+          </ng-container>
+          <ng-template #hasPartnerSalary>
+            <div formGroupName="partner">
+              <div>
+                <mat-form-field appearance="fill">
+                  <mat-label>Your age</mat-label>
+                  <input matInput autocomplete="off" type="number" min="0" formControlName="age" />
+                </mat-form-field>
+              </div>
+              <div>
+                <mat-form-field appearance="fill">
+                  <mat-label>Partner's annual salary</mat-label>
+                  <span matPrefix>$ &nbsp;</span>
+                  <input matInput autocomplete="off" type="number" min="0"  
+                    formControlName="salary" />
+                </mat-form-field>
+              </div>
+            </div>
+          </ng-template>
+
+          <div>
+            <button mat-button (click)="nextStep(2, null, 'back')" class="btn btn-outline-secondary">
+              Back
+            </button>
+            <button mat-button (click)="nextStep(4,'salary',null, stepper)" class="btn btn-primary mx-3">
+              Next
+            </button>
+          </div>
         </div>
         <div *ngSwitchCase="4">
-            <h3 class="mb-5 mt-5">
-              Thank you {{firstname}}
-            </h3>
-            <h5>Do you have a partner?</h5>
-            <p>Partner is someone ...</p>
-            <div class="d-flex mt-3 mb-5">
-                <button class="btn btn-secondary" (click)="changePartnerSts(true)">Yes</button>
-                <button class="btn btn-secondary" (click)="changePartnerSts(false, stepper)">No</button>
-            </div>
-            <div class="mt-3">
-              <button
-                mat-button
-                (click)="nextStep(3, null, 'back')"
-                class="btn btn-primary"
-              >
-                Back
-              </button>
-              <button
-                mat-button
-                (click)="nextStep(4,'salary')"
-                class="btn btn-primary mx-3"
-              >
-                Next
-              </button>
-            </div>
+          <h3 class="mb-5 mt-5">
+            Thank you {{firstname}}
+          </h3>
+          <h5>Do you have a partner?</h5>
+          <p>Partner is someone ...</p>
+          <div class="d-flex mt-3 mb-5">
+            <button class="btn btn-secondary" (click)="changePartnerSts(true)">Yes</button>
+            <button class="btn btn-secondary" (click)="changePartnerSts(false, stepper)">No</button>
+          </div>
+          <div class="mt-3">
+            <button mat-button (click)="nextStep(3, null, 'back')" class="btn btn-outline-primary">
+              Back
+            </button>
+          </div>
         </div>
         <div *ngSwitchDefault>
           <button mat-button matStepperNext class="btn btn-primary">
@@ -197,27 +130,406 @@
   </mat-step>
   <mat-step [stepControl]="financesForm" label="Your finances">
     <form [formGroup]="financesForm">
-      <mat-form-field appearance="fill">
-        <mat-label>Address</mat-label>
-        <input
-          matInput
-          formControlName="secondCtrl"
-          placeholder="Ex. 1 Main St, New York, NY"
-          required
-        />
-      </mat-form-field>
+      <div class="assets" formGroupName="assets">
+        <h3 class="mb-5 mt-5">Your assets</h3>
+        <div class="w-50">
+         <div class="row bordered p-3">
+          <h5>Enter a total</h5>
+          <div class="col-6">
+            <p>
+              Total value of assets you are willing to sell
+            </p>
+          </div>
+          <div class="col-6">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">$</span>
+              </div>
+              <input class="form-control" autocomplete="off" type="number" min="0" formControlName="total" />
+            </div>
+          </div>
+         </div>
+        </div>
+        <p class="text-center w-50 mt-3">Or</p>
+        <div class="w-50">
+          <div class="row bordered p-3">
+            <h5>Enter a breakdown</h5>
+            <div class="row mt-3">
+             
+           <div class="col-6">
+             <p>
+               Cash
+             </p>
+           </div>
+           <div class="col-6">
+             <div class="input-group">
+               <div class="input-group-prepend">
+                 <span class="input-group-text">$</span>
+               </div>
+               <input class="form-control" autocomplete="off" type="number" min="0" formControlName="cash" />
+             </div>
+           </div>
+            </div>
+            <div class="row mt-3">
+           <div class="col-6">
+             <p>
+               Shares
+             </p>
+           </div>
+           <div class="col-6">
+             <div class="input-group">
+               <div class="input-group-prepend">
+                 <span class="input-group-text">$</span>
+               </div>
+               <input class="form-control" autocomplete="off" type="number" min="0" formControlName="shares" />
+             </div>
+           </div>
+            </div>
+            <div class="row mt-3">
+           <div class="col-6">
+             <p>
+               Total superannuation balance
+             </p>
+           </div>
+           <div class="col-6">
+             <div class="input-group">
+               <div class="input-group-prepend">
+                 <span class="input-group-text">$</span>
+               </div>
+               <input class="form-control" autocomplete="off" type="number" min="0" formControlName="superannuation" />
+             </div>
+           </div>
+            </div>
+            <div class="row mt-3">
+           <div class="col-6">
+             <p>
+               Investment property
+             </p>
+           </div>
+           <div class="col-6">
+             <div class="input-group">
+               <div class="input-group-prepend">
+                 <span class="input-group-text">$</span>
+               </div>
+               <input class="form-control" autocomplete="off" type="number" min="0" formControlName="investment" />
+             </div>
+           </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-6">
+                <p>
+                  Other assets
+                </p>
+              </div>
+              <div class="col-6">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">$</span>
+                  </div>
+                  <input class="form-control" autocomplete="off" type="number" min="0" formControlName="other" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex justify-content-end mt-3">
+            <button class="btn btn-secondary" (click)="clearEntries('assets')">Clear all entries</button>
+          </div>
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="debts mt-4" formGroupName="debts">
+        <h3 class="mb-5 mt-5">Your debts</h3>
+        <div class="w-50">
+         <div class="row bordered p-3">
+          <h5>Enter a total</h5>
+          <div class="col-6">
+            <p>
+              Total value of all debts
+            </p>
+          </div>
+          <div class="col-6">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">$</span>
+              </div>
+              <input class="form-control" autocomplete="off" type="number" min="0"   formControlName="total" />
+            </div>
+          </div>
+         </div>
+        </div>
+        <p class="text-center w-50 mt-3">Or</p>
+        <div class="w-50">
+          <div class="row bordered p-3">
+            <h5>Enter a breakdown</h5>
+            <div class="row mt-3">
+             
+           <div class="col-6">
+             <p>
+               Home mortgage
+             </p>
+           </div>
+           <div class="col-6">
+             <div class="input-group">
+               <div class="input-group-prepend">
+                 <span class="input-group-text">$</span>
+               </div>
+               <input class="form-control" autocomplete="off" type="number" min="0"   formControlName="mortgage" />
+             </div>
+           </div>
+            </div>
+            <div class="row mt-3">
+           <div class="col-6">
+             <p>
+               Credit card
+             </p>
+           </div>
+           <div class="col-6">
+             <div class="input-group">
+               <div class="input-group-prepend">
+                 <span class="input-group-text">$</span>
+               </div>
+               <input class="form-control" autocomplete="off" type="number" min="0"   formControlName="creditcard" />
+             </div>
+           </div>
+            </div>
+            <div class="row mt-3">
+           <div class="col-6">
+             <p>
+               Car loan
+             </p>
+           </div>
+           <div class="col-6">
+             <div class="input-group">
+               <div class="input-group-prepend">
+                 <span class="input-group-text">$</span>
+               </div>
+               <input class="form-control" autocomplete="off" type="number" min="0"   formControlName="carloan" />
+             </div>
+           </div>
+            </div>
+            <div class="row mt-3">
+           <div class="col-6">
+             <p>
+               Investment property
+             </p>
+           </div>
+           <div class="col-6">
+             <div class="input-group">
+               <div class="input-group-prepend">
+                 <span class="input-group-text">$</span>
+               </div>
+               <input class="form-control" autocomplete="off" type="number" min="0"   formControlName="investment" />
+             </div>
+           </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-6">
+                <p>
+                  Other debts
+                </p>
+              </div>
+              <div class="col-6">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">$</span>
+                  </div>
+                  <input class="form-control" autocomplete="off" type="number" min="0"   formControlName="other" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex justify-content-end mt-3">
+            <button class="btn btn-secondary" (click)="clearEntries('debts')">Clear all entries</button>
+          </div>
+        </div>
+      </div>
+     
       <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
+        <button mat-button matStepperPrevious class="btn btn-secondary">Back</button>
+        <button mat-button matStepperNext class="btn btn-primary mx-3">Next</button>
       </div>
     </form>
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>Done</ng-template>
-    <p>You are now done.</p>
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
+    <div class="container">
+      <hr>
+      <div class="d-flex">
+        <button class="btn btn-outline-primary" (click)="startOver(stepper)">Start over</button>
+        <button class="btn btn-outline-primary mx-3" (click)="edit(stepper)">Edit responses</button>
+      </div>
+      <div class="mt-5">
+        <h3>What you told us</h3>
+        <h5>About you</h5>
+      </div>
+      <div class="row">
+       
+        <div class="col-6">
+          Your first name
+        </div>
+        <div class="col-6">
+          {{this.aboutForm.get('firstname').value}}
+        </div>
+
+
+      </div>
+      <div class="row">
+       
+        <div class="col-6">
+          Your Age
+        </div>
+        <div class="col-6">
+          {{this.aboutForm.get('age').value}}
+        </div>
+        
+
+      </div>
+
+      <div class="row">
+       
+        <div class="col-6">
+          Your annual salary before tax
+        </div>
+        <div class="col-6">
+         ${{this.aboutForm.get('salary').value}}
+        </div>
+        
+
+      </div>
+      <div class="row">
+       
+        <div class="col-6">
+          Do you have a partner?
+        </div>
+        <div class="col-6">
+          {{hasPartner ? 'Yes': 'No'}}
+        </div>
+        
+
+      </div>
+      
+      <div class="mt-5">
+        <h5>About your assets</h5>
+        <div class="row">
+          
+         <ng-container *ngIf="this.financesForm.controls['assets'].get('total').value; else otherAssets">
+          <div class="col-6">
+            Total value of assets you are willing to sell
+          </div>
+          <div class="col-6">
+            ${{this.financesForm.controls['assets'].get('total').value}}
+          </div>
+         </ng-container>
+         <ng-template #otherAssets>
+            <div class="row">
+              <div class="col-6">
+                Cash
+              </div>
+              <div class="col-6">
+                {{this.financesForm.controls['assets'].get('cash').value}}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                Shares
+              </div>
+              <div class="col-6">
+                {{this.financesForm.controls['assets'].get('shares').value}}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                Total superannuation balance
+              </div>
+              <div class="col-6">
+                {{this.financesForm.controls['assets'].get('superannuation').value}}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                Investment property
+              </div>
+              <div class="col-6">
+                {{this.financesForm.controls['assets'].get('investment').value}}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                Other assets
+              </div>
+              <div class="col-6">
+                {{this.financesForm.controls['assets'].get('other').value}}
+              </div>
+            </div>
+         </ng-template>
+
+        </div>
+      </div>
+
+      <div class="mt-5">
+        <h5>About your debts</h5>
+        <ng-container *ngIf="this.financesForm.controls['debts'].get('total').value; else otherDebts">
+          <div class="row">
+            <div class="col-6">
+              Total value of all debts
+            </div>
+            <div class="col-6">
+              {{this.financesForm.controls['debts'].get('total').value}}
+            </div>
+          </div>
+        </ng-container>
+        <ng-template #otherDebts>
+          <div class="row">
+            <div class="col-6">
+              Mortgage
+            </div>
+            <div class="col-6">
+              {{this.financesForm.controls['debts'].get('mortgage').value}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              Credit card
+            </div>
+            <div class="col-6">
+              {{this.financesForm.controls['debts'].get('creditcard').value}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              Car loan
+            </div>
+            <div class="col-6">
+              {{this.financesForm.controls['debts'].get('carloan').value}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              Investment property
+            </div>
+            <div class="col-6">
+              {{this.financesForm.controls['debts'].get('investment').value}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              Other debts
+            </div>
+            <div class="col-6">
+              {{this.financesForm.controls['debts'].get('other').value}}
+            </div>
+          </div>
+        </ng-template>
+        
+        
+      </div>
+      <hr>
+      <div>
+        <button mat-button class="btn btn-success" (click)="submitForm()">Submit</button>
+      </div>
     </div>
+    
   </mat-step>
 </mat-horizontal-stepper>

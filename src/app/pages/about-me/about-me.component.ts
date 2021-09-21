@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatStepper } from '@angular/material/stepper';
+import { HttpService } from 'src/app/services/http.service';
 
 @Component({
   selector: 'app-about-me',
@@ -11,13 +12,14 @@ export class AboutYouComponent implements OnInit {
   aboutForm: FormGroup;
   financesForm: FormGroup;
   step = 1;
-  constructor(private fb: FormBuilder) { }
+
+  aboutControls = {};
+
+  constructor(private fb: FormBuilder, private http:HttpService) { }
 
   ngOnInit(): void {
     this.initAboutForm();
-    this.financesForm = this.fb.group({
-      secondCtrl: ['', Validators.required]
-    });
+    this.initFinanceForm();
   }
 
   initAboutForm(){
@@ -27,10 +29,35 @@ export class AboutYouComponent implements OnInit {
       salary: [null, Validators.required],
       hasPartner: [false, Validators.required],
       partner: this.fb.group({
-        firstname: ['', Validators.required],
-        age: [null,Validators.required], 
-        salary: [null, Validators.required],
+        firstname: [''],
+        age: [null], 
+        salary: [null],
       })
+    });
+  }
+
+  
+
+
+  initFinanceForm(){
+    this.financesForm = this.fb.group({
+      assets: this.fb.group({
+        total: [null],
+        cash: [null],
+        shares: [null],
+        superannuation: [null],
+        investment: [null],
+        other:[null]
+      }),
+      debts: this.fb.group({
+        total: [null],
+        mortgage: [null],
+        creditcard: [null],
+        carloan:[null],
+        investment:[null],
+        other:[null]
+      })
+      
     });
   }
 
@@ -42,17 +69,29 @@ export class AboutYouComponent implements OnInit {
     return this.aboutForm.get('hasPartner').value;
   }
 
-  nextStep(num:number, control:string, isBack:string, addition:boolean){
+  getAboutControls(control){
+    return this.aboutForm.get(control).value;
+  }
+
+  getFinanceAssets(control){
+    console.log(this.financesForm.controls['assets'].get(control).value);
+    return this.financesForm.controls['assets'].get(control).value;
+  }
+
+  nextStep(num:number, control:string, isBack:string, stepper: MatStepper){
     if(!isBack){
-      if(this.aboutForm.controls[control].valid){
-        this.step = num;
+      if(this.hasPartner && stepper){
+        stepper.next();
+      }
+      else{
+        if(this.aboutForm.controls[control].valid){
+          this.step = num;
+        }
       }
     }
    else{
       this.step = num;
     }
-   
-    
   }
 
   changePartnerSts(has, stepper:MatStepper){
@@ -63,5 +102,26 @@ export class AboutYouComponent implements OnInit {
       stepper.next();
     }
   }
+
+  clearEntries(control){
+    this.financesForm.controls[control].reset();
+  }
+
+  startOver(stepper:MatStepper){
+    stepper.reset();
+    this.step = 1;
+    stepper.selectedIndex = 0;
+  }
+
+  edit(stepper:MatStepper){
+    this.step = 1;
+    stepper.selectedIndex = 0;
+  }
+
+  submitForm(){
+    let obj = {...this.aboutForm.value, ...this.financesForm.value};
+    console.log(obj);
+  }
+
 
 }
