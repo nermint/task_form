@@ -74,7 +74,6 @@ export class AboutYouComponent implements OnInit {
   }
 
   getFinanceAssets(control){
-    console.log(this.financesForm.controls['assets'].get(control).value);
     return this.financesForm.controls['assets'].get(control).value;
   }
 
@@ -120,7 +119,9 @@ export class AboutYouComponent implements OnInit {
 
   submitForm(){
     let obj = {...this.aboutForm.value, ...this.financesForm.value};
-    console.log(obj);
+    this.http.post('api_url',obj).subscribe(res =>{
+      alert('Success');
+    })
   }
 
 
