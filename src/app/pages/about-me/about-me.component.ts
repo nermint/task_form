@@ -14,6 +14,7 @@ export class AboutYouComponent implements OnInit {
   step = 1;
 
   aboutControls = {};
+  isEdited: boolean;
 
   constructor(private fb: FormBuilder, private http:HttpService) { }
 
@@ -77,16 +78,22 @@ export class AboutYouComponent implements OnInit {
     return this.financesForm.controls['assets'].get(control).value;
   }
 
-  nextStep(num:number, control:string, isBack:string, stepper: MatStepper){
+  nextStep(num:number, control:string, isBack:string, stepper: MatStepper, backPartner:string){
     if(!isBack){
       if(this.hasPartner && stepper){
         stepper.next();
+      }
+      else if(backPartner && !stepper){
+        console.log("HERE");
+        this.isEdited = false;
+        this.step = 1;
       }
       else{
         if(this.aboutForm.controls[control].valid){
           this.step = num;
         }
       }
+      
     }
    else{
       this.step = num;
@@ -115,6 +122,7 @@ export class AboutYouComponent implements OnInit {
   edit(stepper:MatStepper){
     this.step = 1;
     stepper.selectedIndex = 0;
+    this.isEdited = true;
   }
 
   submitForm(){

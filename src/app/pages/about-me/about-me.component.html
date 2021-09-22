@@ -4,7 +4,7 @@
       <ng-template matStepLabel class="mb-5">About you</ng-template>
       <ng-container [ngSwitch]="step">
         <div *ngSwitchCase="1">
-          <ng-container *ngIf="!hasPartner; else hasPartnerName">
+          <ng-container *ngIf="!hasPartner || isEdited; else hasPartnerName">
             <h3 class="mb-5 mt-5">About you</h3>
             <mat-form-field appearance="fill">
               <mat-label>Your first name</mat-label>
@@ -21,9 +21,13 @@
             </div>
           </ng-template>
           <div>
-            <button mat-button (click)="nextStep(2, 'firstname')" class="btn btn-primary">
+            <button mat-button *ngIf="hasPartner" (click)="nextStep(4, null, 'back')" class="btn btn-secondary">
+              Back
+            </button>
+            <button mat-button (click)="nextStep(2, 'firstname')" class="btn btn-primary" [class.mx-3]="hasPartner">
               Next
             </button>
+            
           </div>
         </div>
         <div *ngSwitchCase="2">
@@ -31,7 +35,7 @@
             Hi {{ firstname }}, tell us a little about yourself
           </h3>
           <div>
-            <ng-container *ngIf="!hasPartner; else hasPartnerAge">
+            <ng-container *ngIf="!hasPartner || isEdited; else hasPartnerAge">
               <mat-form-field appearance="fill">
                 <mat-label>Your age</mat-label>
                 <input matInput autocomplete="off" type="number" min="0" formControlName="age" />
@@ -60,7 +64,7 @@
           <h3 class="mb-5 mt-5">
             Hi {{ firstname }}, tell us a little about yourself
           </h3>
-          <ng-container *ngIf="!hasPartner; else hasPartnerSalary">
+          <ng-container *ngIf="!hasPartner || isEdited; else hasPartnerSalary">
             <div>
               <mat-form-field appearance="fill">
                 <mat-label>Your age</mat-label>
@@ -97,11 +101,20 @@
 
           <div>
             <button mat-button (click)="nextStep(2, null, 'back')" class="btn btn-outline-secondary">
-              Back
+              Back  
             </button>
-            <button mat-button (click)="nextStep(4,'salary',null, stepper)" class="btn btn-primary mx-3">
-              Next
-            </button>
+            <ng-container *ngIf="isEdited; else nextStepTemp">
+              <button mat-button (click)="nextStep(4,'salary',null, null, 'backPartner')" class="btn btn-primary mx-3">
+                Next
+              </button>
+            </ng-container>
+            <ng-template #nextStepTemp>
+              <button mat-button (click)="nextStep(4,'salary',null, stepper)" class="btn btn-primary mx-3">
+                Next
+              </button>
+            </ng-template>
+            
+           
           </div>
         </div>
         <div *ngSwitchCase="4">
