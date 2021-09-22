@@ -1,0 +1,60 @@
+{
+  "data": [
+    {
+      "firstname": "nermin",
+      "age": 22,
+      "salary": "5,467",
+      "hasPartner": false,
+      "partner": {
+        "firstname": "",
+        "age": null,
+        "salary": null
+      },
+      "assets": {
+        "total": 768,
+        "cash": null,
+        "shares": null,
+        "superannuation": null,
+        "investment": null,
+        "other": null
+      },
+      "debts": {
+        "total": null,
+        "mortgage": null,
+        "creditcard": null,
+        "carloan": null,
+        "investment": null,
+        "other": null
+      },
+      "id": 1
+    },
+    {
+      "firstname": "nermin",
+      "age": 22,
+      "salary": "5,467",
+      "hasPartner": false,
+      "partner": {
+        "firstname": "",
+        "age": null,
+        "salary": null
+      },
+      "assets": {
+        "total": 768,
+        "cash": null,
+        "shares": null,
+        "superannuation": null,
+        "investment": null,
+        "other": null
+      },
+      "debts": {
+        "total": null,
+        "mortgage": null,
+        "creditcard": null,
+        "carloan": null,
+        "investment": null,
+        "other": null
+      },
+      "id": 2
+    }
+  ]
+}

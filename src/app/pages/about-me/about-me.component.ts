@@ -127,7 +127,8 @@ export class AboutYouComponent implements OnInit {
 
   submitForm(){
     let obj = {...this.aboutForm.value, ...this.financesForm.value};
-    this.http.post('api_url',obj).subscribe(res =>{
+    console.log(obj);
+    this.http.post('http://localhost:3000/data',obj).subscribe(res =>{
       alert('Success');
     })
   }
